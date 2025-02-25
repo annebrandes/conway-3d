@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Calibre';
+  src: url('/calibre-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Calibre', sans-serif;
+} 
