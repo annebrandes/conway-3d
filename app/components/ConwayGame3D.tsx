@@ -170,8 +170,8 @@ export default function ConwayGame3D() {
   }, [])
   
   return (
-    <div className="w-full h-full flex flex-col">
-      <div className="controls p-4 bg-black/10 backdrop-blur flex gap-4 flex-wrap">
+    <div className="w-full h-screen flex flex-col">
+      <div className="controls p-4 bg-black/10 backdrop-blur flex gap-4 flex-wrap justify-center">
         <button 
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           onClick={() => setGameState(prev => ({ ...prev, running: !prev.running }))}
@@ -279,17 +279,40 @@ export default function ConwayGame3D() {
             step="0.5" 
             value={gameState.speed} 
             onChange={e => setGameState(prev => ({ ...prev, speed: parseFloat(e.target.value) }))}
-            className="w-24"
+            className="w-32"
           />
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className="text-white">Grid Size:</span>
+          <input 
+            type="range" 
+            min="5" 
+            max="30" 
+            step="1" 
+            value={gameState.gridSize}
+            onChange={e => {
+              const newSize = parseInt(e.target.value, 10);
+              setGameState(prev => ({ 
+                ...prev, 
+                gridSize: newSize,
+                activeCells: new Set<string>() // Clear existing cells
+              }));
+              // Re-initialize with random cells after changing grid size
+              setTimeout(initializeRandom, 0);
+            }}
+            className="w-32"
+          />
+          <span className="text-white w-16">{gameState.gridSize}³</span>
         </div>
       </div>
       
-      <div className="flex-1">
-        <Canvas camera={{ position: [15, 15, 15], fov: 45 }}>
+      <div className="flex-1 w-full">
+        <Canvas camera={{ position: [20, 20, 20], fov: 50 }} style={{ width: '100%', height: '100%' }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 10]} intensity={1} />
           <ConwayGrid gameState={gameState} setGameState={setGameState} />
-          <OrbitControls />
+          <OrbitControls enableDamping dampingFactor={0.25} />
         </Canvas>
       </div>
     </div>
