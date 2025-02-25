@@ -288,7 +288,7 @@ export default function ConwayGame3D() {
           <input 
             type="range" 
             min="5" 
-            max="30" 
+            max="20" 
             step="1" 
             value={gameState.gridSize}
             onChange={e => {
