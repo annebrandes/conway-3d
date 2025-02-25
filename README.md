@@ -18,6 +18,8 @@ In traditional 2D Conway, each cell has 8 neighbors. In 3D, each cell has 26 nei
 2. Any dead cell with 5-7 live neighbors becomes a live cell.
 3. All other live cells die, and all other dead cells stay dead.
 
+<img width="1728" alt="Screenshot 2025-02-25 at 1 55 22 PM" src="https://github.com/user-attachments/assets/377d00fd-b599-4a18-9c56-027f206e1aa3" />
+
 ## Getting Started
 
 First, run the development server:
